@@ -37,9 +37,18 @@ ArenaCameraNode::ArenaCameraNode(rclcpp::NodeOptions node_options)
   this->m_frame_id = camera_settings.get_frame_id();
 
   init_camera_info(camera_settings.get_camera_name(), camera_settings.get_url_camera_info());
+
+  // rclcpp::SensorDataQoS pub_qos_;
+  // pub_qos_.keep_last(100);
+  // pub_qos_.reliability("Reliable");
+
+  // m_publisher = this->create_publisher<sensor_msgs::msg::Image>(
+  //   create_camera_topic_name(camera_settings.get_camera_name()) + "/image",
+  //   rclcpp::SensorDataQoS());
+
   m_publisher = this->create_publisher<sensor_msgs::msg::Image>(
-    create_camera_topic_name(camera_settings.get_camera_name()) + "/image",
-    rclcpp::SensorDataQoS());
+    create_camera_topic_name(camera_settings.get_camera_name()) + "/image", 
+    rclcpp::ServicesQoS());
 
   if (camera_settings.get_enable_rectifying())
   {
@@ -113,6 +122,7 @@ void ArenaCameraNode::publish_image(std::uint32_t camera_index, const cv::Mat & 
   std_msgs::msg::Header header;
   header.stamp = this->now();
   header.frame_id = m_frame_id;
+  cv::flip(image, image, -1);
 
   try {
     cv_bridge::CvImage img_bridge =

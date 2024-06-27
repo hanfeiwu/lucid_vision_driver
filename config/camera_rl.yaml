@@ -1,0 +1,47 @@
+# image_width: 720
+# image_height: 465
+# camera_name: camera_fl
+# camera_matrix:
+#   rows: 3
+#   cols: 3
+#   data: [ 351.601329474, 0.000000, 378.248544041, 0.000000, 351.437276331, 239.14839448, 0.000000, 0.000000, 1.000000 ]
+# distortion_model: plumb_bob
+# distortion_coefficients:
+#   rows: 1
+#   cols: 5
+#   data: [ -0.28099, 0.09585, -0.0018546, -0.0019270, -0.01573 ]
+# rectification_matrix:
+#   rows: 3
+#   cols: 3
+#   data: [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ]
+# projection_matrix:
+#   rows: 3
+#   cols: 4
+#   data: [ 351.601329474, 0.000000, 378.248544041, 0.000000, 0.000000, 351.437276331, 239.14839448, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000 ]
+
+image_width: 512
+image_height: 384
+camera_name: camera_rear_left
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [872.62849,   0.     , 248.38661,
+           0.     , 872.36424, 185.436  ,
+           0.     ,   0.     ,   1.     ]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.240726, 0.295811, -0.000658, -0.001403, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1., 0., 0.,
+         0., 1., 0.,
+         0., 0., 1.]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [854.09985,   0.     , 247.29278,   0.     ,
+           0.     , 860.25061, 184.72467,   0.     ,
+           0.     ,   0.     ,   1.     ,   0.     ]

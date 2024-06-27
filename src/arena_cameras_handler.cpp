@@ -36,6 +36,7 @@ void ArenaCamerasHandler::create_camera_from_settings(CameraSetting & camera_set
   }
 
   auto it = std::find_if(devicesInfos.begin(), devicesInfos.end(), [&](Arena::DeviceInfo & d_info) {
+    std::cout << d_info.SerialNumber().c_str() << std::endl;
     return std::to_string(camera_settings.get_serial_no()) == d_info.SerialNumber().c_str();
   });
 
@@ -50,11 +51,15 @@ void ArenaCamerasHandler::create_camera_from_settings(CameraSetting & camera_set
     if (!m_use_default_device_settings) {
       this->set_auto_exposure(camera_settings.get_enable_exposure_auto());
       this->set_exposure_value(camera_settings.get_auto_exposure_value());
-      this->set_auto_gain(camera_settings.get_enable_exposure_auto());
+      this->set_auto_gain(camera_settings.get_enable_gain_auto());
       this->set_gain_value(camera_settings.get_auto_gain_value());
       this->set_gamma_value(camera_settings.get_gamma_value());
       this->set_reverse_image_y(camera_settings.get_image_horizontal_flip());
       this->set_reverse_image_x(camera_settings.get_image_vertical_flip());
+    } else {
+      auto nodemap = m_device->GetNodeMap();
+      Arena::SetNodeValue<GenICam::gcstring>(nodemap, "UserSetSelector", "Default");
+      Arena::ExecuteNode(nodemap, "UserSetLoad");
     }
 
     m_cameras = new ArenaCamera(m_device, camera_settings);

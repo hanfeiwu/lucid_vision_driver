@@ -70,6 +70,37 @@ def generate_launch_description():
                              "gamma_target": camera_yaml_param['gamma_target'],
                              "enable_compressing": camera_yaml_param['enable_compressing'],
                              "enable_rectifying": camera_yaml_param['enable_rectifying'],
+                             "image_horizontal_flip": camera_yaml_param['image_horizontal_flip'],
+                             "image_vertical_flip": camera_yaml_param['image_vertical_flip'],
+                             }],
+                remappings=[
+                ],
+                extra_arguments=[
+                    {"use_intra_process_comms": True}
+                ],
+
+                
+                package="lucid_vision_driver",
+                plugin="ArenaCameraNode",
+                name="arena_camera_node_left",
+                parameters=[{"camera_name": camera_yaml_param['l_camera_name'],
+                             "frame_id": camera_yaml_param['l_frame_id'],
+                             "pixel_format": camera_yaml_param['l_pixel_format'],
+                             "serial_no": camera_yaml_param['l_serial_no'],
+                             "camera_info_url": camera_yaml_param['l_camera_info_url'],
+                             "fps": camera_yaml_param['l_fps'],
+                             "horizontal_binning": camera_yaml_param['l_horizontal_binning'],
+                             "vertical_binning": camera_yaml_param['l_vertical_binning'],
+                             "use_default_device_settings": camera_yaml_param['l_use_default_device_settings'],
+                             "exposure_auto": camera_yaml_param['l_exposure_auto'],
+                             "exposure_target": camera_yaml_param['l_exposure_target'],
+                             "gain_auto": camera_yaml_param['l_gain_auto'],
+                             "gain_target": camera_yaml_param['l_gain_target'],
+                             "gamma_target": camera_yaml_param['l_gamma_target'],
+                             "enable_compressing": camera_yaml_param['l_enable_compressing'],
+                             "enable_rectifying": camera_yaml_param['l_enable_rectifying'],
+                             "image_horizontal_flip": camera_yaml_param['l_image_horizontal_flip'],
+                             "image_vertical_flip": camera_yaml_param['l_image_vertical_flip'],
                              }],
                 remappings=[
                 ],
